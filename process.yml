@@ -1,0 +1,6 @@
+apps:
+  - script: ./src/index.js
+    instances: max
+    exec_mode: cluster
+  - script: ./src/index.js
+    name: setup
