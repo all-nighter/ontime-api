@@ -9,6 +9,7 @@ import {
   userSubscriptionList,
   driverSubscriptionList,
   approveSubscription,
+  unsubscribedList,
 } from "./controllers/index.js";
 
 export const router = Router();
@@ -21,5 +22,6 @@ router.post("/user/subscription", createSubscriptionPending);
 
 router.post("/driver/login", driverLogin);
 router.post("/driver/signup", driverSignup);
-router.get("/driver/subscriptions", driverSubscriptionList);
-router.post("/driver/subscription", approveSubscription);
+router.get("/driver/schedules", driverSubscriptionList);
+router.get("/driver/job-list", unsubscribedList);
+router.post("/driver/approve-schedule", approveSubscription);
