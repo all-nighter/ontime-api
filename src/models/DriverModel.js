@@ -57,4 +57,10 @@ driverSchema.statics.findByEmail = function (email) {
   return this.findOne({ email });
 };
 
+driverSchema.statics.verify = async function (email, password) {
+  const driver = await this.findOne({ email });
+  const isVerified = bcrypt.compareSync(password, driver.password);
+  return isVerified;
+};
+
 export const Driver = mongoose.model("Driver", driverSchema);
