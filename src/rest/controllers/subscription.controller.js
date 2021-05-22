@@ -5,6 +5,8 @@ import { createSubscription } from "../../services/subscription/createSubscripti
 import { getPendingSubscriptions } from "../../services/subscription/getPendingSubscriptions.js";
 import { getFulfilledSubscriptions } from "../../services/subscription/getFulfilledSubscriptions.js";
 import { getDriverSubscriptions } from "../../services/subscription/getDriverSubscriptions.js";
+import { matchDriver } from "../../services/subscription/matchDriver.js";
+import { getUnsubscribed } from "../../services/subscription/getUnsubscribed.js";
 
 export const createSubscriptionPending = async (req, res) => {
   const validated = validateSubscriptionPending({ ...req.body });
@@ -42,4 +44,16 @@ export const driverSubscriptionList = async (req, res) => {
   return res.send({ subscriptions });
 };
 
-export const approveSubscription = async (req, res) => {};
+export const approveSubscription = async (req, res) => {
+  const { subscriptionId, email } = req.body;
+  const driver = await findDriverByEmail(email);
+  if (!driver) return res.sendStatus(401);
+  const status = await matchDriver(subscriptionId, driver._id);
+  if (!status.ok) return res.sendStatus(400);
+  return res.sendStatus(200);
+};
+
+export const unsubscribedList = async (req, res) => {
+  const unsubscribedList = await getUnsubscribed();
+  return res.send({ unsubscribedList });
+};
