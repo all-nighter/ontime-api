@@ -4,6 +4,7 @@ import { userLogin as userLoginServiceFunc } from "../../services/auth/userLogin
 import { createDriver } from "../../services/auth/createDriver.js";
 import { findDriverByEmail } from "../../services/auth/findDriverByEmail.js";
 import { driverLogin as driverLoginServiceFunc } from "../../services/auth/driverLogin.js";
+import { getFulfilledSubscriptions } from "../../services/subscription/getFulfilledSubscriptions.js";
 import pkg from "mongoose";
 const { Error: MongooseError } = pkg;
 
@@ -36,7 +37,11 @@ export const userLogin = async (req, res) => {
 
   try {
     const user = await userLoginServiceFunc(email, password);
-    return res.send({ ...user._doc });
+    const subscriptions = await getFulfilledSubscriptions(user._id);
+    return res.send({
+      ...user._doc,
+      hasSubscription: subscriptions.length ? true : false,
+    });
   } catch (err) {
     if (err.message === "authorization is failed") {
       return res.sendStatus(400);

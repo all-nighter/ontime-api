@@ -11,7 +11,6 @@ export const validateSubscriptionPending = (input) => {
    * @params {string} input.minute - 분
    */
   input = mapper(input);
-  console.log(input);
   if (
     !input.email ||
     !input.departure ||

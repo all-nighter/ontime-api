@@ -53,6 +53,15 @@ userSchema.pre("save", function (next) {
   }
 });
 
+// userSchema.virtual("hasSubscription").get(function () {
+//   const instance = Subscription.findOne({
+//     user: this._id,
+//     driver: { $ne: null },
+//   });
+//   console.log(instnace);
+//   return instance ? true : false;
+// });
+
 userSchema.statics.findByEmail = async function (email) {
   const user = await this.findOne({ email });
   return user;
