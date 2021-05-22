@@ -1,0 +1,5 @@
+{
+  "appService.zipIgnorePattern": ["node_modules{,/**}", ".vscode{,/**}"],
+  "appService.defaultWebAppToDeploy": "/subscriptions/73def728-2724-4b5a-b4c6-c0af11a7ed8c/resourceGroups/junction-resource-group/providers/Microsoft.Web/sites/junction-2021",
+  "appService.deploySubpath": "."
+}
