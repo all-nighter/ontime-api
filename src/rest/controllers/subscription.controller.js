@@ -7,6 +7,7 @@ import { getFulfilledSubscriptions } from "../../services/subscription/getFulfil
 import { getDriverSubscriptions } from "../../services/subscription/getDriverSubscriptions.js";
 import { matchDriver } from "../../services/subscription/matchDriver.js";
 import { getUnsubscribed } from "../../services/subscription/getUnsubscribed.js";
+import { createSubscriptionPendingMapper } from "../mappers.js";
 
 export const createSubscriptionPending = async (req, res) => {
   const validated = validateSubscriptionPending({ ...req.body });
@@ -21,8 +22,10 @@ export const createSubscriptionPending = async (req, res) => {
       ...validated,
       user: user._id,
     });
-    return res.send({ ...doc });
+    const mappedResponse = createSubscriptionPendingMapper(doc);
+    return res.send({ ...mappedResponse });
   } catch (err) {
+    console.log(err.message);
     return res.sendStatus(500);
   }
 };

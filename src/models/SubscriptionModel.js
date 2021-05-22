@@ -34,10 +34,10 @@ const subscriptionSchema = new Schema({
   numberOfProtectors: {
     type: Number,
   },
-  subscriptionWeeks: {
-    type: Number,
-    required: true,
-  },
+  // subscriptionWeeks: {
+  //   type: Number,
+  //   required: true,
+  // },
   frequencyOfWeek: {
     type: [Number],
     required: true,
