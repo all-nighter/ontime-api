@@ -25,7 +25,6 @@ export const createSubscriptionPending = async (req, res) => {
     const mappedResponse = createSubscriptionPendingMapper(doc);
     return res.send({ ...mappedResponse });
   } catch (err) {
-    console.log(err.message);
     return res.sendStatus(500);
   }
 };

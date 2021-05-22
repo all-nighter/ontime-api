@@ -38,5 +38,6 @@ const mapper = (input) => {
     frequencyOfWeek: input.frequencyOfWeek,
     hour,
     minute,
+    driver: input.driver,
   };
 };

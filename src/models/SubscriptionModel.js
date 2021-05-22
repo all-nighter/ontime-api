@@ -17,16 +17,16 @@ const subscriptionSchema = new Schema({
     required: true,
   },
   departureLocationPoint: {
-    type: String,
-    required: true,
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
   },
   destination: {
     type: String,
     required: true,
   },
   destinationLocationPoint: {
-    type: String,
-    required: true,
+    lat: { type: Number, required: true },
+    lng: { type: Number, required: true },
   },
   numberOfPassengers: {
     type: Number,
@@ -44,6 +44,12 @@ const subscriptionSchema = new Schema({
   },
   subscribedAt: {
     type: Date,
+  },
+  hour: {
+    type: String,
+  },
+  minute: {
+    type: String,
   },
 });
 

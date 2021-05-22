@@ -8,6 +8,6 @@ export const getFulfilledSubscriptions = async (userId) => {
   const subscribed = await Subscription.find({
     user: userId,
     driver: { $ne: null },
-  });
+  }).populate("driver");
   return subscribed;
 };
