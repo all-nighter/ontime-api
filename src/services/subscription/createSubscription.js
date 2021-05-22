@@ -17,7 +17,7 @@ export const createSubscription = async (input) => {
    * @params {number} input.numberOfPassengers - 탑승 교통약자 수
    * @params {number} input.numberOfPassengers - 탑승 보호자 수
    */
-  const doc = new Subscription(input);
+  const doc = new Subscription({ ...input, subscribedAt: new Date() });
   const subscription = await doc.save();
-  return subscription;
+  return { ...subscription._doc };
 };
