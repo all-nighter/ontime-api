@@ -23,7 +23,7 @@ export const createSubscriptionPending = async (req, res) => {
   }
 };
 
-export const getSubscriptions = async (req, res) => {
+export const getUserSubscriptions = async (req, res) => {
   const { email } = req.query;
   const user = await findUserByEmail(email);
   if (!user) return res.sendStatus(401);
