@@ -53,8 +53,15 @@ userSchema.pre("save", function (next) {
   }
 });
 
-userSchema.statics.findByEmail = function (email) {
-  return this.findOne({ email });
+userSchema.statics.findByEmail = async function (email) {
+  const user = await this.findOne({ email });
+  return user;
+};
+
+userSchema.statics.verify = async function (email, password) {
+  const user = await this.findOne({ email });
+  const isVerified = bcrypt.compareSync(password, user.password);
+  return isVerified;
 };
 
 export const User = mongoose.model("User", userSchema);

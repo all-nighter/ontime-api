@@ -1,6 +1,6 @@
 import { User } from "../../models/UserModel.js";
 
-export const findByEmail = async (email) => {
+export const findUserByEmail = async (email) => {
   /**
    * @params {string} userInfo.email - 이메일
    */
