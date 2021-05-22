@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+const driverSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -32,8 +32,8 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.pre("save", function (next) {
-  const user = this;
+driverSchema.pre("save", function (next) {
+  const driver = this;
 
   if (this.isModified("password") || this.isNew) {
     /**
@@ -42,19 +42,19 @@ userSchema.pre("save", function (next) {
     bcrypt.genSalt(10, (saltError, salt) => {
       if (saltError) return next(saltError);
 
-      bcrypt.hash(user.password, salt, (hashError, hash) => {
+      bcrypt.hash(driver.password, salt, (hashError, hash) => {
         if (hashError) {
           return next(hashError);
         }
-        user.password = hash;
+        driver.password = hash;
         next();
       });
     });
   }
 });
 
-userSchema.statics.findByEmail = function (email) {
+driverSchema.statics.findByEmail = function (email) {
   return this.findOne({ email });
 };
 
-export const User = mongoose.model("User", userSchema);
+export const Driver = mongoose.model("Driver", driverSchema);
