@@ -20,7 +20,8 @@ export const validateSubscriptionPending = (input) => {
     // !input.subscriptionWeeks ||
     !input.frequencyOfWeek ||
     !input.hour ||
-    !input.minute
+    !input.minute ||
+    !input.estimatedTimeSeconds
   ) {
     return false;
   }
@@ -39,5 +40,6 @@ const mapper = (input) => {
     hour,
     minute,
     driver: input.driver,
+    estimatedTimeSeconds: input.estimatedTimeSeconds,
   };
 };

@@ -8,5 +8,6 @@ export const createSubscriptionPendingMapper = (doc) => {
     time: `${doc.hour}:${doc.minute}`,
     frequencyOfWeek: doc.frequencyOfWeek,
     user: doc.user,
+    estimatedTimeSeconds: doc.estimatedTimeSeconds,
   };
 };

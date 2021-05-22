@@ -51,6 +51,10 @@ const subscriptionSchema = new Schema({
   minute: {
     type: String,
   },
+  estimatedTimeSeconds: {
+    type: Number,
+    required: true,
+  },
 });
 
 // subscriptionSchema.pre("save", async function (next) {
