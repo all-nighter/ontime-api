@@ -1,8 +1,10 @@
 import { validateSubscriptionPending } from "../../services/subscription/validateSubscriptionPending.js";
 import { findUserByEmail } from "../../services/auth/findUserByEmail.js";
+import { findDriverByEmail } from "../../services/auth/findDriverByEmail.js";
 import { createSubscription } from "../../services/subscription/createSubscription.js";
 import { getPendingSubscriptions } from "../../services/subscription/getPendingSubscriptions.js";
 import { getFulfilledSubscriptions } from "../../services/subscription/getFulfilledSubscriptions.js";
+import { getDriverSubscriptions } from "../../services/subscription/getDriverSubscriptions.js";
 
 export const createSubscriptionPending = async (req, res) => {
   const validated = validateSubscriptionPending({ ...req.body });
@@ -23,7 +25,7 @@ export const createSubscriptionPending = async (req, res) => {
   }
 };
 
-export const getSubscriptions = async (req, res) => {
+export const userSubscriptionList = async (req, res) => {
   const { email } = req.query;
   const user = await findUserByEmail(email);
   if (!user) return res.sendStatus(401);
@@ -31,3 +33,13 @@ export const getSubscriptions = async (req, res) => {
   const subscribed = await getFulfilledSubscriptions(user._id);
   res.send({ unsubscribed, subscribed });
 };
+
+export const driverSubscriptionList = async (req, res) => {
+  const { email } = req.query;
+  const driver = await findDriverByEmail(email);
+  if (!driver) return res.sendStatus(401);
+  const subscriptions = await getDriverSubscriptions(driver._id);
+  return res.send({ subscriptions });
+};
+
+export const approveSubscription = async (req, res) => {};
