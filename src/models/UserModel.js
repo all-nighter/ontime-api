@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import validator from "validator";
+// import validator from "validator";
 import bcrypt from "bcryptjs";
 
 const { Schema } = mongoose;
@@ -13,18 +13,18 @@ const userSchema = new Schema({
     type: String,
     unique: true,
     required: true,
-    validate: (email) => {
-      if (!validator.isEmail(email)) throw new Error("Invalid email");
-    },
+    // validate: (email) => {
+    //   if (!validator.isEmail(email)) throw new Error("Invalid email");
+    // },
   },
   phoneNumber: {
     type: String,
     unique: true,
     required: true,
-    validate: (phoneNumber) => {
-      if (!phoneNumber.match(/^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/))
-        throw new Error("Invalid PhoneNumber");
-    },
+    // validate: (phoneNumber) => {
+    //   if (!phoneNumber.match(/^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/))
+    //     throw new Error("Invalid PhoneNumber");
+    // },
   },
   password: {
     type: String,
