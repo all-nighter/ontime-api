@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const scheduleSchema = new Schema({
+const subscriptionSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -11,14 +11,13 @@ const scheduleSchema = new Schema({
   driver: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Driver",
-    required: true,
   },
   departure: {
     type: String,
     required: true,
   },
   departureLocationPoint: {
-    type: String,,
+    type: String,
     required: true,
   },
   destination: {
@@ -32,14 +31,30 @@ const scheduleSchema = new Schema({
   numberOfPassengers: {
     type: Number,
   },
+  numberOfProtectors: {
+    type: Number,
+  },
   subscriptionWeeks: {
     type: Number,
     required: true,
   },
+  frequencyOfWeek: {
+    type: [Number],
+    required: true,
+  },
   subscribedAt: {
     type: Date,
-  }
+  },
 });
 
+// subscriptionSchema.pre("save", async function (next) {
+//   if (this.isNew) {
+//     const alreadyHasOne = await Subscription.findOne({
+//       email: this.email,
+//     });
+//     if (alreadyHasOne) throw new Error("Error");
+//     next();
+//   }
+// });
 
-export const Schedule = mongoose.model("Schedule", scheduleSchema);
+export const Subscription = mongoose.model("Subscription", subscriptionSchema);
