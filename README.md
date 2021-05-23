@@ -31,5 +31,6 @@ $ npm start
 ```
 
 ### Dependencies
+- [Node.js 14.x](https://nodejs.org/en)
 - [express](https://github.com/expressjs/express)
 - [mongoose](https://github.com/Automattic/mongoose)
