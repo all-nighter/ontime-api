@@ -21,7 +21,8 @@ export const validateSubscriptionPending = (input) => {
     !input.frequencyOfWeek ||
     !input.hour ||
     !input.minute ||
-    !input.estimatedTimeSeconds
+    input.estimatedTimeSeconds === null ||
+    input.estimatedTimeSeconds === undefined
   ) {
     return false;
   }
@@ -31,9 +32,9 @@ export const validateSubscriptionPending = (input) => {
 const mapper = (input) => {
   const [hour, minute] = input.time.split(":");
   return {
-    email: input.email,
+    // email: input.email,
     departure: input.startAddress,
-    destination: input.destAddress,
+    // destination: input.destAddress,
     departureLocationPoint: input.startCoordinates,
     destinationLocationPoint: input.destCoordinates,
     frequencyOfWeek: input.frequencyOfWeek,
